@@ -1,0 +1,2 @@
+🧠 OCR Detected Text:
+ [{'text': '16:23', 'coords': (105, 42)}, {'text': '@', 'coords': (182, 41)}, {'text': '©', 'coords': (922, 40)}, {'text': '60%', 'coords': (978, 42)}, {'text': 'Turning', 'coords': (283, 2216)}, {'text': 'Every', 'coords': (491, 2218)}, {'text': 'Farm', 'coords': (659, 2211)}, {'text': 'Smart', 'coords': (453, 2297)}, {'text': 'Farm.', 'coords': (640, 2297)}]

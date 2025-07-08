@@ -1,0 +1,6 @@
+appium-python-client
+pytest
+allure-pytest
+pytesseract
+Pillow
+openai  # or your chosen LLM wrapper

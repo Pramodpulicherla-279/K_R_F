@@ -1,0 +1,7 @@
+[
+  { "step_id": 1, "action": "input", "element": "phone_number_input", "value": "user123" },
+  { "step_id": 2, "action": "click", "element": "otp_input"},
+  { "step_id": 3, "action": "click", "element": "next_button_login" },
+  { "step_id": 4, "action": "click", "element": "verify_button_login" },
+  { "step_id": 5, "action": "click", "element": "dashboard_title" }
+]

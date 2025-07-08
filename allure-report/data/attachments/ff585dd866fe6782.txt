@@ -1,0 +1,10 @@
+[❌] Element 'phone_number_input' not found via XPath. Trying OCR fallback...
+[✅] OCR clicked on 'Phone' successfully.
+[❌] Element 'next_button_login' not found via XPath. Trying OCR fallback...
+[✅] OCR clicked on 'Next' successfully.
+[INFO] Next button clicked by OCR fallback.
+[❌] Element 'verify_button_login' not found via XPath. Trying OCR fallback...
+[✅] OCR clicked on 'Verify' successfully.
+[INFO] Verify button clicked by OCR fallback.
+🧠 OCR Detected Text:
+ [{'text': 'vo)', 'coords': (737, 34)}, {'text': '25.63', 'coords': (783, 32)}, {'text': 'Messages', 'coords': (194, 45)}, {'text': '=', 'coords': (825, 47)}, {'text': 'ull', 'coords': (873, 41)}, {'text': '62%', 'coords': (977, 42)}, {'text': 'CP-AGRBRI-S', 'coords': (355, 180)}, {'text': 'Now', 'coords': (562, 184)}, {'text': '@', 'coords': (972, 210)}, {'text': '<#>', 'coords': (251, 236)}, {'text': '2831', 'coords': (331, 237)}, {'text': 'is', 'coords': (393, 237)}, {'text': 'your', 'coords': (452, 243)}, {'text': 'one', 'coords': (529, 240)}, {'text': 'time', 'coords': (605, 237)}, {'text': 'verification', 'coords': (741, 236)}]

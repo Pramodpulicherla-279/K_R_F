@@ -1,0 +1,8 @@
+{
+  "phone_number_input": "//android.widget.EditText[@content-desc='phone_number']",
+  "otp_input": "//android.widget.EditText[@content-desc='otp']",
+  "next_button_login": "//android.widget.Button[@text='Next']",
+  "verify_button_login": "//android.widget.Button[@text='Login']",
+  "change_mobile_number_button": "//android.widget.Button[@text='Change Mobile Number']",
+  "dashboard_title": "//android.widget.TextView[@text= 'Dashboard']"
+}
