@@ -1,8 +1,14 @@
 {
-  "phone_number_input": "//android.widget.EditText[@content-desc='phone_number']",
+  "next_button_language_login": "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup",
+  "allow_notifications_button": "//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]",
+  "allow_location_button": "//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_foreground_only_button\"]",
+  "allow_picture_button": "//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_one_time_button\"]",
+  "allow_audio_button": "//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_one_time_button\"]",
+  "phone_number_input": "//android.widget.EditText[@content-desc=\"Phone Number input field, mandatory\"]",
   "otp_input": "//android.widget.EditText[@content-desc='otp']",
-  "next_button_login": "//android.widget.Button[@text='Next']",
-  "verify_button_login": "//android.widget.Button[@text='Login']",
-  "change_mobile_number_button": "//android.widget.Button[@text='Change Mobile Number']",
+  "next_button_login": "//android.view.ViewGroup[@content-desc=\"Next\"]",
+  "verify_button_login": "//android.view.ViewGroup[@content-desc=\"Verify OTP\"]",
+  "change_mobile_number_button": "//android.view.ViewGroup[@content-desc=\"Change Mobile Number\"]",
+  "resend_otp_button": "//android.widget.TextView[@text=\"Resend OTP\"]",
   "dashboard_title": "//android.widget.TextView[@text= 'Dashboard']"
 }

@@ -1,42 +1,47 @@
-import pytest
-from appium import webdriver
 import os
+import pytest
+import allure
+from appium import webdriver
 from appium.options.android import UiAutomator2Options
-from selenium.common.exceptions import WebDriverException
 
-APK_PATH = os.getenv("APK_PATH", "F:\\K_R_F\\Krishivaas_Farmer_UI_RN(V0.12.34).apk")
-
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def driver():
-    # Configure capabilities
+    """Appium driver fixture with Allure attachments"""
     options = UiAutomator2Options()
-    
-    # Required capabilities
     options.platform_name = "Android"
-    options.automation_name = "uiautomator2"  # Explicitly set automation engine
-    
-    # Device capabilities - adjust these to match your device
-    options.device_name = "emulator-5554"  # Use actual device name from 'adb devices'
-    options.udid = os.getenv("ANDROID_DEVICE_UDID", None)  # Optional but recommended
-    
-    # App capabilities
-    options.app = APK_PATH  # Make sure this path is correct
-    options.app_package = "com.krishivaas"
-    options.app_activity = "com.krishivaas.MainActivity"
-    
-    # Optional settings
-    options.no_reset = True
+    options.device_name = "13971098400008K"
+    options.app = os.path.abspath("F:\\K_R_F\\Krishivaas_Farmer_UI_RN(V0.12.34).apk")
+    options.automation_name = "uiautomator2"
     options.auto_grant_permissions = True
-    
-    try:
-        # Initialize driver with error handling
-        driver = webdriver.Remote(
-            "http://localhost:4723",  # Try without /wd/hub for newer Appium versions
-            options=options
+
+    with allure.step("Initialize Appium Driver"):
+        allure.attach(
+            str(options.capabilities),
+            name="Driver Capabilities",
+            attachment_type=allure.attachment_type.JSON
         )
+        driver = webdriver.Remote("http://localhost:4723", options=options)
         yield driver
-    except WebDriverException as e:
-        pytest.fail(f"Failed to initialize Appium driver: {str(e)}")
-    finally:
-        if 'driver' in locals():
+        
+        # Teardown
+        with allure.step("Close Appium Session"):
             driver.quit()
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    """Add Allure attachments on test failure"""
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == "call" and report.failed:
+        driver = item.funcargs.get('driver')
+        if driver:
+            try:
+                screenshot = driver.get_screenshot_as_png()
+                allure.attach(
+                    screenshot,
+                    name="Failure Screenshot",
+                    attachment_type=allure.attachment_type.PNG
+                )
+            except Exception as e:
+                print(f"Failed to capture screenshot: {str(e)}")
