@@ -1,0 +1,39 @@
+[
+    {
+        "step": "Click Next on language screen",
+        "status": "Success"
+    },
+    {
+        "step": "Allow picture permission",
+        "status": "Success"
+    },
+    {
+        "step": "Allow location permission",
+        "status": "Success"
+    },
+    {
+        "step": "Allow audio permission",
+        "status": "Success"
+    },
+    {
+        "step": "Allow notifications permission",
+        "status": "Success"
+    },
+    {
+        "step": "Enter valid phone number",
+        "status": "Success",
+        "value": "7660852538"
+    },
+    {
+        "step": "Click Next after entering phone number",
+        "status": "Success"
+    },
+    {
+        "step": "Click Verify OTP",
+        "status": "Success"
+    },
+    {
+        "step": "Verify dashboard is displayed",
+        "status": "Success"
+    }
+]

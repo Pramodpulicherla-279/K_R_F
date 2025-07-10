@@ -16,144 +16,116 @@ class TestLogin:
     @allure.story("Successful Login")
     @allure.title("Verify user can login with valid credentials")
     def test_login_success(self, driver):
+        # This list will store the details of each step in the test flow
+        test_flow_steps = []
+
         with open(os.path.join('locators', 'elements.json'), 'r') as f:
             xpaths = json.load(f)
+        
+        # --- Locators ---
         language_next_xpath = xpaths.get("next_button_language_login")
+        allow_picture_button_xpath = xpaths.get("allow_picture_button")
+        allow_location_button_xpath = xpaths.get("allow_location_button")
+        allow_audio_button_xpath = xpaths.get("allow_audio_button")
+        allow_notifications_button_xpath = xpaths.get("allow_notifications_button")
+        phone_number_input_xpath = xpaths.get("phone_number_input")
+        next_button_login_xpath = xpaths.get("next_button_login")
+        verify_button_login_xpath = xpaths.get("verify_button_login")
+        dashboard_title_xpath = xpaths.get("dashboard_title")
 
-        with allure.step("1. next button on language selection screen"):
-            print(f"[DEBUG] Using XPath for language next: {language_next_xpath}")
-            next_button_language_login, used_ocr = smart_find_element(
-            driver,
-            name="next_button_language_login",
-            xpath=language_next_xpath,
-            fallback_text="Next"
-            )
-            if next_button_language_login is not None:
-               next_button_language_login.click()
-            elif not used_ocr:
-               raise Exception("Next button in language selection not found after all fallback methods")
-            
-        with allure.step("1. Allow notifications"):
-            allow_notifications_button, used_ocr = smart_find_element(
-                driver,
-                name="allow_notifications_button",
-                xpath="//android.widget.Button[@text='Allow']",
-                fallback_text="While using the app"
-            )
-            if allow_notifications_button is not None:
-                allow_notifications_button.click()
-            elif not used_ocr:
-                raise Exception("Allow Notifications button not found after all fallback methods")
-            
-        with allure.step("2. Allow location access"):
-            allow_location_button, used_ocr = smart_find_element(
-                driver,
-                name="allow_location_button",
-                xpath="//android.widget.Button[@text='Allow']",
-                fallback_text="While using"
-            )
-            if allow_location_button is not None:
-                allow_location_button.click()
-            elif not used_ocr:
-                raise Exception("Allow Location button not found after all fallback methods")
-
-        with allure.step("3. Allow camera access"):
-            allow_camera_button, used_ocr = smart_find_element(
-                driver,
-                name="allow_camera_button",
-                xpath="//android.widget.Button[@text='Allow']",
-                fallback_text="While using"
-            )
-            if allow_camera_button is not None:
-                allow_camera_button.click()
-            elif not used_ocr:
-                raise Exception("Allow Camera button not found after all fallback methods")
-            
-        with allure.step("4. Enter phone number"):
-            phone_input, used_ocr = smart_find_element(
-                driver,
-                name="phone_number_input",
-                xpath="//android.widget.EditText[@resource-id='phoneInput']",
-                fallback_text="Phone"
-            )
-            
-            if used_ocr:
-                # If OCR was used to click, find the element again after focus
-                phone_input = WebDriverWait(driver, 5).until(
-                    EC.presence_of_element_located((AppiumBy.XPATH, "//android.widget.EditText[@focused='true']"))
+        try:
+            with allure.step("1. Next button on language selection screen"):
+                next_button_language_login, used_ocr = smart_find_element(
+                    driver, name="next_button_language_login", xpath=language_next_xpath, fallback_text="Next"
                 )
-                
-            if phone_input is not None:
-                phone_input.clear()
-                phone_input.send_keys("7660852538")
-                allure.attach(
-                    "Entered phone number: 7660852538",
-                    name="Phone Input",
-                    attachment_type=allure.attachment_type.TEXT
+                if next_button_language_login:
+                    next_button_language_login.click()
+                    test_flow_steps.append({"step": "Click Next on language screen", "status": "Success"})
+                else:
+                    raise Exception("Next button in language selection not found")
+
+            with allure.step("2. Allow picture"):
+                allow_picture_button, used_ocr = smart_find_element(
+                    driver, name="allow_picture_button", xpath=allow_picture_button_xpath, fallback_text="While using the app"
                 )
-            else:
-                raise Exception("Phone input field not found after all fallback methods")
+                if allow_picture_button:
+                    allow_picture_button.click()
+                    test_flow_steps.append({"step": "Allow picture permission", "status": "Success"})
+                else:
+                    raise Exception("Allow picture button not found")
 
-        with allure.step("5. Tap next button"):
-            next_button, used_ocr = smart_find_element(
-                driver,
-                name="next_button_login",
-                xpath="//android.widget.Button[@text='Next']",
-                fallback_text="Next"
-            )
+            with allure.step("3. Allow location"):
+                allow_location_button, used_ocr = smart_find_element(
+                    driver, name="allow_location_button", xpath=allow_location_button_xpath, fallback_text="While using"
+                )
+                if allow_location_button:
+                    allow_location_button.click()
+                    test_flow_steps.append({"step": "Allow location permission", "status": "Success"})
+                else:
+                    raise Exception("Allow Location button not found")
             
-            if next_button is not None:
-                next_button.click()
-            elif not used_ocr:
-                raise Exception("Next button not found after all fallback methods")
+            with allure.step("4. Allow audio"):
+                allow_audio_button, used_ocr = smart_find_element(
+                    driver, name="allow_audio_button", xpath=allow_audio_button_xpath, fallback_text="While using the app"
+                )
+                if allow_audio_button:
+                    allow_audio_button.click()
+                    test_flow_steps.append({"step": "Allow audio permission", "status": "Success"})
+                else:
+                    raise Exception("Allow audio button not found")
 
-        with allure.step("6. Wait for OTP and verify"):
-            time.sleep(10)  # Wait for OTP
-            verify_button, used_ocr = smart_find_element(
-                driver,
-                name="verify_button_login",
-                xpath="//android.widget.Button[@text='Verify']",
-                fallback_text="Verify"
-            )
-            
-            if verify_button is not None:
-                verify_button.click()
-            elif not used_ocr:
-                raise Exception("Verify button not found after all fallback methods")
+            with allure.step("5. Allow notifications"):
+                allow_notifications_button, used_ocr = smart_find_element(
+                    driver, name="allow_notifications_button", xpath=allow_notifications_button_xpath, fallback_text="Allow"
+                )
+                if allow_notifications_button:
+                    allow_notifications_button.click()
+                    test_flow_steps.append({"step": "Allow notifications permission", "status": "Success"})
+                else:
+                    raise Exception("Allow Notifications button not found")
 
-        with allure.step("7. Verify dashboard appears"):
-            dashboard = None
-            timeout = time.time() + 30
-            last_screenshot_time = time.time()
-            
-            while time.time() < timeout:
+            with allure.step("6. Enter phone number"):
+                phone_input, used_ocr = smart_find_element(
+                    driver, name="phone_number_input", xpath=phone_number_input_xpath, fallback_text="Phone"
+                )
+                if phone_input:
+                    phone_input.clear()
+                    phone_input.send_keys("7660852538")
+                    test_flow_steps.append({"step": "Enter valid phone number", "status": "Success", "value": "7660852538"})
+                else:
+                    raise Exception("Phone input field not found")
+
+            with allure.step("7. Tap next button"):
+                next_button, used_ocr = smart_find_element(
+                    driver, name="next_button_login", xpath=next_button_login_xpath, fallback_text="Next"
+                )
+                if next_button:
+                    next_button.click()
+                    test_flow_steps.append({"step": "Click Next after entering phone number", "status": "Success"})
+                else:
+                    raise Exception("Next button not found")
+
+            with allure.step("8. Wait for OTP and verify"):
+                time.sleep(10)  # Waiting for OTP
+                verify_button, used_ocr = smart_find_element(
+                    driver, name="verify_button_login", xpath=verify_button_login_xpath, fallback_text="Verify"
+                )
+                if verify_button:
+                    verify_button.click()
+                    test_flow_steps.append({"step": "Click Verify OTP", "status": "Success"})
+                else:
+                    raise Exception("Verify button not found")
+
+            with allure.step("9. Verify dashboard appears"):
                 dashboard, used_ocr = smart_find_element(
-                    driver,
-                    name="dashboard_title",
-                    xpath="//android.widget.TextView[contains(@text, 'Dashboard')]",
-                    fallback_text="Dashboard"
+                    driver, name="dashboard_title", xpath=dashboard_title_xpath, fallback_text="Dashboard"
                 )
-                if dashboard or used_ocr:
-                    break
-                
-                # Take screenshot every 5 seconds for OCR
-                if time.time() - last_screenshot_time > 5:
-                    screenshot = driver.get_screenshot_as_png()
-                    allure.attach(
-                        screenshot,
-                        name="Dashboard Check Screenshot",
-                        attachment_type=allure.attachment_type.PNG
-                    )
-                    last_screenshot_time = time.time()
-                    
-                    try:
-                        ocr_text = extract_text_with_coordinates(screenshot)
-                        if any("dashboard" in item["text"].lower() for item in ocr_text):
-                            break
-                    except Exception as e:
-                        print(f"OCR failed: {str(e)}")
-                
-                time.sleep(1)
-            
-            assert dashboard is not None or used_ocr, "Dashboard not found after login"
-            allure.attach("Login successful", name="Result", attachment_type=allure.attachment_type.TEXT)
+                assert dashboard is not None or used_ocr, "Dashboard not found after login"
+                test_flow_steps.append({"step": "Verify dashboard is displayed", "status": "Success"})
+                allure.attach("Login successful", name="Result", attachment_type=allure.attachment_type.TEXT)
+
+        finally:
+            # Save the captured flow to a file
+            os.makedirs("test-flows", exist_ok=True)
+            with open("test-flows/login_flow_success.json", "w") as f:
+                json.dump(test_flow_steps, f, indent=4)

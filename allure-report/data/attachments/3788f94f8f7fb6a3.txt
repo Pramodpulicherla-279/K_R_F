@@ -1,2 +1,0 @@
-Attempting to connect to Appium server at http://localhost:4723 with capabilities:
-{'automationName': 'UIAutomator2', 'platformName': 'Android', 'appium:automationName': 'UiAutomator2', 'appium:platformVersion': '14', 'appium:deviceName': 'AndroidDevice', 'appium:app': '/path/to/your.apk', 'appium:appPackage': 'com.krishivaas', 'appium:appActivity': 'com.krishivaas.app.MainActivity', 'appium:noReset': True, 'appium:autoGrantPermissions': True}

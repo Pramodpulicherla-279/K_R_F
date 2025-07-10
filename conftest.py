@@ -9,7 +9,7 @@ def driver():
     """Appium driver fixture with Allure attachments"""
     options = UiAutomator2Options()
     options.platform_name = "Android"
-    options.device_name = "13971098400008K"
+    options.device_name = "13971098400008K"  # Replace with your device ID or use an emulator
     options.app = os.path.abspath("F:\\K_R_F\\Krishivaas_Farmer_UI_RN(V0.12.34).apk")
     options.automation_name = "uiautomator2"
     options.auto_grant_permissions = True

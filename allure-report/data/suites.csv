@@ -1,3 +1,2 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","56248","Test valid login with fallback OCR and AI suggestions","tests","Tue Jul 08 17:22:27 IST 2025","passed","Tue Jul 08 17:23:24 IST 2025","","test_login","",""
-"","15537","Test valid login with fallback OCR and AI suggestions","","Tue Jul 08 16:55:28 IST 2025","passed","Tue Jul 08 16:55:43 IST 2025","","","",""
+"","23689","Verify user can login with valid credentials","tests","Thu Jul 10 12:57:50 IST 2025","passed","Thu Jul 10 12:58:14 IST 2025","TestLogin","test_login_pytest","",""

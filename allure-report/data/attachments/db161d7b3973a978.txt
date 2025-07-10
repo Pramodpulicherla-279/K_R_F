@@ -1,0 +1,9 @@
+[DEBUG] Using XPath for language next: //android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup
+[DEBUG] Using XPath for allow picture next: //android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_one_time_button"]
+[DEBUG] Using XPath for allow location next: //android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_foreground_only_button"]
+[DEBUG] Using XPath for allow audio next: //android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_one_time_button"]
+[DEBUG] Using XPath for allow notifications next: //android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]
+[DEBUG] Using XPath for phone number input: //android.widget.EditText[@content-desc="Phone Number input field, mandatory"]
+[DEBUG] Using XPath for next button login: //android.view.ViewGroup[@content-desc="Next"]
+[DEBUG] Using XPath for OTP input: //android.widget.EditText[@content-desc='otp']
+[DEBUG] Using XPath for dashboard title: //android.widget.TextView[@text= 'Dashboard']
